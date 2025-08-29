@@ -155,7 +155,7 @@ def replace_constants_acc(file_content):
 def replace_constants_bcc(file_content):
     file_content = CONST_DECLARATION.sub(r'enum : \1 { \2 = \4 };',
                                          file_content)
-    file_content = PRIVCONST_DECLARATION.sub(r'private enum : \1 { \2 = \4 };',
+    file_content = PRIVCONST_DECLARATION.sub(r'internal enum : \1 { \2 = \4 };',
                                              file_content)
     return file_content
 
