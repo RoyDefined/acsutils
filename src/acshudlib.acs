@@ -1,6 +1,6 @@
 // When adding new properties, don't forget to edit ACSUTILS_HUDSTATE_SIZE.
 @privconst int ACSUTILS_HUDLIB_SAVEDSTATES = 16;
-@privconst int ACSUTILS_HUDSTATE_SIZE = 45;
+@privconst int ACSUTILS_HUDSTATE_SIZE = 44;
 @privconst int ACSUTILS_HUDLIB_STACKSIZE = ACSUTILS_HUDSTATE_SIZE * ACSUTILS_HUDLIB_SAVEDSTATES;
 
 @bool R_Is3DPoint = false;
@@ -43,8 +43,7 @@
 @fixed R_ClipY = 0.0;
 @fixed R_ClipWidth = 0.0;
 @fixed R_ClipHeight = 0.0;
-@bool R_ClipState = false;
-@bool R_ClipTarget = false;
+@bool R_ShouldClip = false;
 
 @bool R_ShowIn3DView = true;
 @bool R_ShowOnFullAutomap = true;
@@ -117,8 +116,7 @@ function void HudResetState(void)
 	$R_ClipY = 0.0;
 	$R_ClipWidth = 0.0;
 	$R_ClipHeight = 0.0;
-	$R_ClipState = false;
-	$R_ClipTarget = false;
+	$R_ShouldClip = false;
 
 	$R_ShowIn3DView = true;
 	$R_ShowOnFullAutomap = true;
@@ -188,8 +186,7 @@ function void HudPushState(void)
 	HudStateStack[$HudStateStackTop++] = $R_ClipY;
 	HudStateStack[$HudStateStackTop++] = $R_ClipWidth;
 	HudStateStack[$HudStateStackTop++] = $R_ClipHeight;
-	HudStateStack[$HudStateStackTop++] = $R_ClipState;
-	HudStateStack[$HudStateStackTop++] = $R_ClipTarget;
+	HudStateStack[$HudStateStackTop++] = $R_ShouldClip;
 
 	HudStateStack[$HudStateStackTop++] = $R_ShowIn3DView;
 	HudStateStack[$HudStateStackTop++] = $R_ShowOnFullAutomap;
@@ -242,8 +239,7 @@ function void HudPopState(void)
 	$R_ClipY = HudStateStack[--$HudStateStackTop];
 	$R_ClipWidth = HudStateStack[--$HudStateStackTop];
 	$R_ClipHeight = HudStateStack[--$HudStateStackTop];
-	$R_ClipState = HudStateStack[--$HudStateStackTop];
-	$R_ClipTarget = HudStateStack[--$HudStateStackTop];
+	$R_ShouldClip = HudStateStack[--$HudStateStackTop];
 
 	$R_DisappearTime = HudStateStack[--$HudStateStackTop];
 	$R_StayTime = HudStateStack[--$HudStateStackTop];
@@ -506,15 +502,13 @@ function void HudSetClipRect(fixed x, fixed y, fixed width, fixed height)
 	$R_ClipY = y;
 	$R_ClipWidth = width;
 	$R_ClipHeight = height;
-
-	// Ensure it is redrawn.
-	$R_ClipState = false;
-	$R_ClipTarget = true;
+	$R_ShouldClip = true;
 }
 
 function void HudRemoveClipRect()
 {
-	$R_ClipTarget = false;
+	$R_ShouldClip = false;
+	SetHudClipRect(0, 0, 0, 0);
 }
 
 function void HudSetShowIn3DView(bool show)
@@ -683,26 +677,18 @@ function void ACSUtils_HudDrawHudMessage(int id, int type, str text, bool isText
 	fixed iScaleX = $R_IScaleX;
 	fixed iScaleY = $R_IScaleY;
 	
-	if ($R_ClipState != $R_ClipTarget)
+	if ($R_ShouldClip)
 	{
-		if ($R_ClipTarget)
-		{
-			fixed scrX = x + FixedMul($R_ClipX, iScaleX);
-			fixed scrY = y + FixedMul($R_ClipY, iScaleY);
-			fixed scrWidth = FixedMul($R_ClipWidth, iScaleX);
-			fixed scrHeight = FixedMul($R_ClipHeight, iScaleY);
-
-			SetHudClipRect(
-				int(scrX >> (raw)16),
-				int(scrY >> (raw)16),
-				int(scrWidth >> (raw)16),
-				int(scrHeight >> (raw)16));
-
-			$R_ClipState = $R_ClipTarget;
-		}
-		else
-			SetHudClipRect(0, 0, 0, 0);
-
+		fixed scrX = x + FixedMul($R_ClipX, iScaleX);
+		fixed scrY = y + FixedMul($R_ClipY, iScaleY);
+		fixed scrWidth = FixedMul($R_ClipWidth, iScaleX);
+		fixed scrHeight = FixedMul($R_ClipHeight, iScaleY);
+		
+		SetHudClipRect(
+			int(scrX >> (raw)16),
+			int(scrY >> (raw)16),
+			int(scrWidth >> (raw)16),
+			int(scrHeight >> (raw)16));
 	}
 	
 	if ($R_Is3DPoint)
