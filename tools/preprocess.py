@@ -162,11 +162,11 @@ def replace_constants_bcc(file_content):
 
 # Type replacement
 def remove_casts(file_content):
-    return re.sub(r'\b(int|fixed|str|bool|ang)\(', '(', file_content)
+    return re.sub(r'\b(int|fixed|str|bool|ang|raw)\(', '(', file_content)
 
 
 def replace_casts(file_content):
-    return re.sub(r'\b(int|fixed|str|bool|ang)\(', r'(\1)(', file_content)
+    return re.sub(r'\b(int|fixed|str|bool|ang|raw)\(', r'(\1)(', file_content)
 
 
 def replace_types_acc(file_content):
