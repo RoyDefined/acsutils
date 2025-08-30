@@ -508,7 +508,6 @@ function void HudSetClipRect(fixed x, fixed y, fixed width, fixed height)
 function void HudRemoveClipRect()
 {
 	$R_ShouldClip = false;
-	SetHudClipRect(0, 0, 0, 0);
 }
 
 function void HudSetShowIn3DView(bool show)
@@ -690,6 +689,8 @@ function void ACSUtils_HudDrawHudMessage(int id, int type, str text, bool isText
 			int(scrWidth >> (raw)16),
 			int(scrHeight >> (raw)16));
 	}
+	else
+		SetHudClipRect(0, 0, 0, 0);
 	
 	if ($R_Is3DPoint)
 	{
