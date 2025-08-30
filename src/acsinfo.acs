@@ -10,7 +10,7 @@ function int IdentifySourcePort(void)
 	if ($CachedPort != -1)
 		return $CachedPort;
 
-	if (GetPlayerAccountName(0) != 0)
+	if ((raw)GetPlayerAccountName(0) != 0)
 	{
 		// GetPlayerAccountName returns a string (possibly empty) in Zandronum
 		// but 0 in GZDoom.
@@ -19,7 +19,7 @@ function int IdentifySourcePort(void)
 	}
 	
 	int tid = UniqueTid();
-	if (SpawnForced("DynamicLight", 0, 0, 0, tid))
+	if (SpawnForced("DynamicLight", 0.0, 0.0, 0.0, tid))
 	{
 		// DynamicLight is a built-in actor in GZDoom.
 		Thing_Remove(tid);
