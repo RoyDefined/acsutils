@@ -232,14 +232,14 @@ function void HudPopState(void)
 	$R_ShowOnFullAutomap = HudStateStack[--$HudStateStackTop];
 	$R_ShowIn3DView = HudStateStack[--$HudStateStackTop];
 
+	$R_ShouldClip = HudStateStack[--$HudStateStackTop];
+	$R_ClipHeight = HudStateStack[--$HudStateStackTop];
+	$R_ClipWidth = HudStateStack[--$HudStateStackTop];
+	$R_ClipY = HudStateStack[--$HudStateStackTop];
+	$R_ClipX = HudStateStack[--$HudStateStackTop];
+
 	$R_Alpha = HudStateStack[--$HudStateStackTop];
 	$R_BlendStyle = HudStateStack[--$HudStateStackTop];
-
-	$R_ClipX = HudStateStack[--$HudStateStackTop];
-	$R_ClipY = HudStateStack[--$HudStateStackTop];
-	$R_ClipWidth = HudStateStack[--$HudStateStackTop];
-	$R_ClipHeight = HudStateStack[--$HudStateStackTop];
-	$R_ShouldClip = HudStateStack[--$HudStateStackTop];
 
 	$R_DisappearTime = HudStateStack[--$HudStateStackTop];
 	$R_StayTime = HudStateStack[--$HudStateStackTop];
