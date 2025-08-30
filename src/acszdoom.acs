@@ -114,7 +114,7 @@ script "ACSUtils_GetActorName" (int tid)
 
 function str GetActorName(int tid)
 {
-	return ACS_NamedExecuteWithResult("ACSUtils_GetActorName", tid);
+	return str(ACS_NamedExecuteWithResult("ACSUtils_GetActorName", tid));
 }
 
 function bool IsAlive(void)

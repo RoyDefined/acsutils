@@ -16,7 +16,7 @@ function int ActorPlayerNumber(int tid)
 
 function bool ActorIsPlayer(int tid)
 {
-	return ClassifyActor(tid) & ACTOR_PLAYER;
+	return bool(ClassifyActor(tid) & ACTOR_PLAYER);
 }
 
 function str PlayerName(int player)

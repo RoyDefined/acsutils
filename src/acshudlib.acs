@@ -514,34 +514,34 @@ function void HudSetCenterText(bool centerText)
 	$R_CenterText = centerText;
 }
 
-function void HudSetAlignment(fixed alignX, fixed alignY)
+function void HudSetAlignment(int alignX, int alignY)
 {
 	$R_AlignX = alignX;
 	$R_AlignY = alignY;
 }
 
-function void HudSetAlign(fixed alignX, fixed alignY)
+function void HudSetAlign(int alignX, int alignY)
 {
 	$R_AlignX = alignX;
 	$R_AlignY = alignY;
 }
 
-function void HudSetAlignmentX(fixed alignX)
+function void HudSetAlignmentX(int alignX)
 {
 	$R_AlignX = alignX;
 }
 
-function void HudSetAlignX(fixed alignX)
+function void HudSetAlignX(int alignX)
 {
 	$R_AlignX = alignX;
 }
 
-function void HudSetAlignmentY(fixed alignY)
+function void HudSetAlignmentY(int alignY)
 {
 	$R_AlignY = alignY;
 }
 
-function void HudSetAlignY(fixed alignY)
+function void HudSetAlignY(int alignY)
 {
 	$R_AlignY = alignY;
 }

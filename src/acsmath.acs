@@ -32,7 +32,7 @@ function num max(num a, num b)
 	return b;
 }
 
-function int clamp(num x, num a, num b)
+function num clamp(num x, num a, num b)
 {
 	if (x > b)
 		return b;
@@ -50,7 +50,7 @@ function int sgn(num x)
 	return 0;
 }
 
-function int abs(num x)
+function num abs(num x)
 {
 	if (x > 0)
 		return x;
