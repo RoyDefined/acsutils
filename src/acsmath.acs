@@ -255,9 +255,9 @@ function void swap(raw a, raw b)
 
 // Bit math.
 
-function int getbit(int x, int n)
+function int getbit(int p, int n)
 {
-	return x & (1 << n);
+	return (p >> n) & 1;
 }
 
 function int clrbit(int p, int n)
@@ -267,7 +267,7 @@ function int clrbit(int p, int n)
 
 function int setbit(int p, int n)
 {
-	return p | ~(1 << n);
+	return p | (1 << n);
 }
 
 function int tglbit(int p, int n)
