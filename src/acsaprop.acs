@@ -227,7 +227,7 @@ function void SetActorNoTarget(int tid, bool NoTarget)
 		SetActorProperty(tid, APROP_NoTarget, NoTarget);
 }
 
-function int GetActorRadius(int tid) { return GetActorProperty(tid, APROP_Radius); }
+function fixed GetActorRadius(int tid) { return GetActorProperty(tid, APROP_Radius); }
 function void SetActorRadius(int tid, fixed Radius)
 {
 	if (GetActorProperty(tid, APROP_Radius) != Radius)
