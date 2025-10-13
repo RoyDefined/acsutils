@@ -505,7 +505,7 @@ function void HudSetClipRect(fixed x, fixed y, fixed width, fixed height)
 	$R_ShouldClip = true;
 }
 
-function void HudRemoveClipRect()
+function void HudRemoveClipRect(void)
 {
 	$R_ShouldClip = false;
 }
