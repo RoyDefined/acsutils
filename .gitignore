@@ -5,6 +5,9 @@ decorate/changeflag.txt
 # ACSUtils distribution
 dist/
 
+# Python cache
+tools/__pycache__
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
