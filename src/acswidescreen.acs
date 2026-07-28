@@ -8,6 +8,7 @@
 @const fixed ASPECT_16_9 = fixed(int(16.0) / 9);
 @const fixed ASPECT_16_10 = 1.6;
 @const fixed ASPECT_17_10 = 1.7;
+@const fixed ASPECT_21_9 = fixed(int(64.0) / 27);
 
 function fixed GetAspectRatio(void)
 {
@@ -29,6 +30,7 @@ function fixed GetAspectRatio(void)
 		case 3:	return ASPECT_4_3;
 		case 4:	return ASPECT_5_4;
 		case 5: return ASPECT_17_10;
+        case 6: return ASPECT_21_9;
 	}
 	if(nowidescreen)
 	{
@@ -57,6 +59,10 @@ function fixed GetAspectRatio(void)
 	{
 		return ASPECT_5_4;
 	}
+    if(abs((abs(height * ASPECT_21_9)>>16) - width) < 30)
+    {
+        return ASPECT_21_9;
+    }
 	return ASPECT_4_3;
 }
 
